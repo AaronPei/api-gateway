@@ -9,7 +9,7 @@ service Greeter {
   // Sends a greeting
   rpc SayHello (HelloRequest) returns (HelloReply) {
       option (google.api.http) = {
-          get: "/v2/hello/{name}"
+          get: "/v2/hello/{name}/{age}"
         };
   }
 
@@ -24,9 +24,11 @@ service Greeter {
 // The request message containing the user's name.
 message HelloRequest {
   string name = 1;
+  string  age = 2;
 }
 
 // The response message containing the greetings
 message HelloReply {
   string message = 1;
+  string  age = 2;
 }

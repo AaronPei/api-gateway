@@ -4,9 +4,10 @@ import (
 	"log"
 	"net"
 
-	echo "github.com/api-gateway/example/echo/service"
-	pb "github.com/api-gateway/example/helloworld/service"
-	_ "github.com/api-gateway/types"
+	echo "learn/api-gateway/example/echo/service"
+	pb "learn/api-gateway/example/helloworld/service"
+	_ "learn/api-gateway/types"
+
 	"github.com/gogo/protobuf/types"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
@@ -28,11 +29,11 @@ func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloRe
 	if er != nil {
 		return nil, err
 	}
-	return &pb.HelloReply{Message: "Hello " + in.Name + "-" + reply.String()}, nil
+	return &pb.HelloReply{Message: "Hello " + in.Name + "-" + in.Age + "-" + reply.String()}, nil
 }
 
 func (s *server) SayBye(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
-	return &pb.HelloReply{Message: "Hello " + in.Name}, nil
+	return &pb.HelloReply{Message: "Hello " + in.Name + "-" + in.Age}, nil
 }
 
 func main() {

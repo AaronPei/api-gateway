@@ -4,8 +4,8 @@ import (
 	"flag"
 	"os"
 
-	"github.com/api-gateway/server"
-	"github.com/api-gateway/types/log"
+	"learn/api-gateway/server"
+	"learn/api-gateway/types/log"
 )
 
 var (

@@ -6,8 +6,8 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/api-gateway/types"
-	"github.com/api-gateway/types/log"
+	"learn/api-gateway/types"
+	"learn/api-gateway/types/log"
 	"golang.org/x/net/websocket"
 	"google.golang.org/grpc"
 )

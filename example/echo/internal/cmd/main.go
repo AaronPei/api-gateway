@@ -4,8 +4,8 @@ import (
 	"log"
 	"net"
 
-	pb "github.com/api-gateway/example/echo/service"
-	_ "github.com/api-gateway/types"
+	pb "learn/api-gateway/example/echo/service"
+	_ "learn/api-gateway/types"
 	"github.com/gogo/protobuf/types"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"

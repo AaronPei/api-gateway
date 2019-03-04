@@ -4,7 +4,8 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/api-gateway/types/log"
+	"learn/api-gateway/types/log"
+
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

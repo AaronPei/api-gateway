@@ -5,10 +5,11 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/api-gateway/third_party/google/api"
-	"github.com/api-gateway/third_party/runtime"
-	"github.com/api-gateway/types"
-	"github.com/api-gateway/types/log"
+	"learn/api-gateway/third_party/google/api"
+	"learn/api-gateway/third_party/runtime"
+	"learn/api-gateway/types"
+	"learn/api-gateway/types/log"
+
 	"github.com/gogo/protobuf/proto"
 	"github.com/gogo/protobuf/protoc-gen-gogo/descriptor"
 	"github.com/gogo/protobuf/protoc-gen-gogo/plugin"

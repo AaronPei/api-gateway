@@ -1,6 +1,7 @@
 # Variables
+GOCMD=GOOS=linux go
 SERVICE=echo
-IMG_HUB?=registry.test.com/test
+IMG_HUB?=registry.cn-beijing.aliyuncs.com/weihua/test
 TAG?=latest
 # Version information
 VERSION=1.0.0
@@ -17,11 +18,11 @@ else
 endif
 
 prepare:
-	go install github.com/api-gateway/plugin/...
+	$(GOCMD) install learn/api-gateway/plugin/...
 
 generate-go:
 	@protoc -I${GOPATH}/src -I./service \
-	-I${GOPATH}/src/github.com/api-gateway/third_party \
+	-I${GOPATH}/src/learn/api-gateway/third_party \
 	--gogogo_out=\
 	Mgoogle/protobuf/any.proto=github.com/gogo/protobuf/types,\
 	Mgoogle/protobuf/duration.proto=github.com/gogo/protobuf/types,\
@@ -34,7 +35,7 @@ generate-go:
 	@echo Generate successfully.
 
 build:prepare generate-go
-	go build -ldflags="$(LD_FLAGS)" -o bundles/$(SERVICE) internal/cmd/main.go
+	$(GOCMD) build -ldflags="$(LD_FLAGS)" -o bundles/$(SERVICE) internal/cmd/main.go
 
 image:build
 	docker build -t $(IMG_HUB)/$(SERVICE):$(TAG) .
@@ -44,7 +45,7 @@ run:image
 	@docker service create --name $(SERVICE) --network devel $(IMG_HUB)/$(SERVICE):$(TAG)
 
 test:
-	go test -cover ./...
+	$(GOCMD) test -cover ./...
 
 # PHONY
 .PHONY : test test-integration generate fmt

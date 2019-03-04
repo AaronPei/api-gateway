@@ -1,6 +1,7 @@
 # Variables
+GOCMD=GOOS=linux go
 SERVICE=api-gateway
-IMG_HUB?=registry.test.io/test
+IMG_HUB?=registry.cn-beijing.aliyuncs.com/weihua/test
 TAG?=latest
 # Version information
 VERSION=1.0.0
@@ -12,22 +13,22 @@ LD_FLAGS:=-X main.Version=$(VERSION) -X main.Revision=$(REVISION) -X main.Releas
 
 run:prepare build
 	@-docker service rm $(SERVICE)	
-	@docker service create --name $(SERVICE) --network devel -p 8080:8080 -e GRPC_GO_LOG_SEVERITY_LEVEL=INFO $(IMG_HUB)/$(SERVICE):$(TAG)
+	docker service create --name $(SERVICE) --network devel -p 8080:8080 -e GRPC_GO_LOG_SEVERITY_LEVEL=INFO $(IMG_HUB)/$(SERVICE):$(TAG)
 	cd example/echo && make run
 	cd example/helloworld && make run
 
 prepare:
-	@go get google.golang.org/grpc
-	@go get github.com/gogo/protobuf/protoc-gen-gogofast
+	@$(GOCMD) get google.golang.org/grpc
+	@$(GOCMD) get github.com/gogo/protobuf/protoc-gen-gogofast
 	@-docker swarm init
 	@-docker network create --driver=overlay devel	
 
 build:
-	@go build -ldflags="$(LD_FLAGS)" -o bundles/$(SERVICE) cmd/main.go	
+	@$(GOCMD) build -ldflags="$(LD_FLAGS)" -o bundles/$(SERVICE) cmd/main.go	
 	docker build -t $(IMG_HUB)/$(SERVICE):$(TAG) .
 
 test:
-	@go test -cover ./...
+	@$(GOCMD) test -cover ./...
 
 # PHONY
 .PHONY : test test-integration generate fmt

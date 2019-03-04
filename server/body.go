@@ -7,7 +7,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/api-gateway/types"
+	"learn/api-gateway/types"
 	"github.com/gogo/protobuf/protoc-gen-gogo/descriptor"
 )
 
