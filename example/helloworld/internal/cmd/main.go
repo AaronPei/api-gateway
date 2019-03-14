@@ -21,6 +21,7 @@ const (
 type server struct{}
 
 func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
+	// create connection
 	conn, err := grpc.Dial("echo:50051", grpc.WithInsecure())
 	if err != nil {
 		return nil, err
@@ -29,7 +30,7 @@ func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloRe
 	if er != nil {
 		return nil, err
 	}
-	return &pb.HelloReply{Message: "Hello " + in.Name + "-" + in.Age + "-" + reply.String()}, nil
+	return &pb.HelloReply{Message: "Hello " + in.Name + "-" + in.Age + "-echoPing" + reply.String()}, nil
 }
 
 func (s *server) SayBye(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {

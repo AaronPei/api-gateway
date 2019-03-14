@@ -49,5 +49,8 @@ run:image
 test:
 	$(GOCMD) test -cover ./...
 
+destroy:
+	docker service rm $(SERVICE)
+
 # PHONY
 .PHONY : test test-integration generate fmt

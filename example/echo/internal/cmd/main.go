@@ -6,6 +6,7 @@ import (
 
 	pb "learn/api-gateway/example/echo/service"
 	_ "learn/api-gateway/types"
+
 	"github.com/gogo/protobuf/types"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"

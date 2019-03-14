@@ -30,5 +30,10 @@ build:
 test:
 	@$(GOCMD) test -cover ./...
 
+destroy:
+	docker service rm $(SERVICE)
+	cd example/echo && make destroy
+	cd example/helloworld && make destroy
+
 # PHONY
 .PHONY : test test-integration generate fmt
