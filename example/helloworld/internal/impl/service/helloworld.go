@@ -28,3 +28,7 @@ func (s *Server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloRe
 func (s *Server) SayBye(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
 	return &pb.HelloReply{Message: "Hello " + in.Name + "-" + in.Age}, nil
 }
+
+func (s *Server) SayHi(ctx context.Context, in *pb.HiRequest) (*pb.HiReply, error) {
+	return &pb.HiReply{ReplyContent: "This content" + in.Content}, nil
+}

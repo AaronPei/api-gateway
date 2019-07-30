@@ -3,15 +3,12 @@
 
 package helloworld
 
-import proto "github.com/gogo/protobuf/proto"
-import fmt "fmt"
-import http "net/http"
-import strings "strings"
-import math "math"
-
 import (
-	context "golang.org/x/net/context"
+	context "context"
+	fmt "fmt"
+	proto "github.com/gogo/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	math "math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -38,7 +35,7 @@ func (m *HelloRequest) Reset()         { *m = HelloRequest{} }
 func (m *HelloRequest) String() string { return proto.CompactTextString(m) }
 func (*HelloRequest) ProtoMessage()    {}
 func (*HelloRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_helloworld_9c89e9913ffbdc79, []int{0}
+	return fileDescriptor_17b8c58d586b62f2, []int{0}
 }
 func (m *HelloRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_HelloRequest.Unmarshal(m, b)
@@ -46,8 +43,8 @@ func (m *HelloRequest) XXX_Unmarshal(b []byte) error {
 func (m *HelloRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_HelloRequest.Marshal(b, m, deterministic)
 }
-func (dst *HelloRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HelloRequest.Merge(dst, src)
+func (m *HelloRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_HelloRequest.Merge(m, src)
 }
 func (m *HelloRequest) XXX_Size() int {
 	return xxx_messageInfo_HelloRequest.Size(m)
@@ -85,7 +82,7 @@ func (m *HelloReply) Reset()         { *m = HelloReply{} }
 func (m *HelloReply) String() string { return proto.CompactTextString(m) }
 func (*HelloReply) ProtoMessage()    {}
 func (*HelloReply) Descriptor() ([]byte, []int) {
-	return fileDescriptor_helloworld_9c89e9913ffbdc79, []int{1}
+	return fileDescriptor_17b8c58d586b62f2, []int{1}
 }
 func (m *HelloReply) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_HelloReply.Unmarshal(m, b)
@@ -93,8 +90,8 @@ func (m *HelloReply) XXX_Unmarshal(b []byte) error {
 func (m *HelloReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	return xxx_messageInfo_HelloReply.Marshal(b, m, deterministic)
 }
-func (dst *HelloReply) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_HelloReply.Merge(dst, src)
+func (m *HelloReply) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_HelloReply.Merge(m, src)
 }
 func (m *HelloReply) XXX_Size() int {
 	return xxx_messageInfo_HelloReply.Size(m)
@@ -119,9 +116,113 @@ func (m *HelloReply) GetAge() string {
 	return ""
 }
 
+type HiRequest struct {
+	Content              string   `protobuf:"bytes,1,opt,name=content,proto3" json:"content,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *HiRequest) Reset()         { *m = HiRequest{} }
+func (m *HiRequest) String() string { return proto.CompactTextString(m) }
+func (*HiRequest) ProtoMessage()    {}
+func (*HiRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_17b8c58d586b62f2, []int{2}
+}
+func (m *HiRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_HiRequest.Unmarshal(m, b)
+}
+func (m *HiRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_HiRequest.Marshal(b, m, deterministic)
+}
+func (m *HiRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_HiRequest.Merge(m, src)
+}
+func (m *HiRequest) XXX_Size() int {
+	return xxx_messageInfo_HiRequest.Size(m)
+}
+func (m *HiRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_HiRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_HiRequest proto.InternalMessageInfo
+
+func (m *HiRequest) GetContent() string {
+	if m != nil {
+		return m.Content
+	}
+	return ""
+}
+
+type HiReply struct {
+	ReplyContent         string   `protobuf:"bytes,1,opt,name=reply_content,json=replyContent,proto3" json:"reply_content,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *HiReply) Reset()         { *m = HiReply{} }
+func (m *HiReply) String() string { return proto.CompactTextString(m) }
+func (*HiReply) ProtoMessage()    {}
+func (*HiReply) Descriptor() ([]byte, []int) {
+	return fileDescriptor_17b8c58d586b62f2, []int{3}
+}
+func (m *HiReply) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_HiReply.Unmarshal(m, b)
+}
+func (m *HiReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_HiReply.Marshal(b, m, deterministic)
+}
+func (m *HiReply) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_HiReply.Merge(m, src)
+}
+func (m *HiReply) XXX_Size() int {
+	return xxx_messageInfo_HiReply.Size(m)
+}
+func (m *HiReply) XXX_DiscardUnknown() {
+	xxx_messageInfo_HiReply.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_HiReply proto.InternalMessageInfo
+
+func (m *HiReply) GetReplyContent() string {
+	if m != nil {
+		return m.ReplyContent
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*HelloRequest)(nil), "helloworld.HelloRequest")
 	proto.RegisterType((*HelloReply)(nil), "helloworld.HelloReply")
+	proto.RegisterType((*HiRequest)(nil), "helloworld.HiRequest")
+	proto.RegisterType((*HiReply)(nil), "helloworld.HiReply")
+}
+
+func init() { proto.RegisterFile("helloworld.proto", fileDescriptor_17b8c58d586b62f2) }
+
+var fileDescriptor_17b8c58d586b62f2 = []byte{
+	// 309 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x91, 0xc1, 0x4a, 0x3b, 0x31,
+	0x10, 0xc6, 0xd9, 0xfe, 0xff, 0x76, 0xed, 0x58, 0xa1, 0x8e, 0x58, 0xc2, 0x22, 0x22, 0x2b, 0x82,
+	0xf4, 0xb0, 0x81, 0xea, 0x41, 0x7a, 0x54, 0xd0, 0x9e, 0x3c, 0xb4, 0x57, 0x41, 0x52, 0x1d, 0xd6,
+	0x85, 0x34, 0x59, 0x77, 0xa3, 0x12, 0x4a, 0x2f, 0xbe, 0x82, 0x8f, 0xe6, 0x2b, 0xf8, 0x1e, 0x4a,
+	0xb2, 0x5d, 0x6c, 0xa5, 0x27, 0x6f, 0x33, 0x5f, 0xbe, 0xef, 0x97, 0xc9, 0x04, 0x3a, 0x8f, 0x24,
+	0xa5, 0x7e, 0xd5, 0x85, 0x7c, 0x48, 0xf2, 0x42, 0x1b, 0x8d, 0xf0, 0xa3, 0x44, 0xfb, 0xa9, 0xd6,
+	0xa9, 0x24, 0x2e, 0xf2, 0x8c, 0x0b, 0xa5, 0xb4, 0x11, 0x26, 0xd3, 0xaa, 0xac, 0x9c, 0xf1, 0x19,
+	0xb4, 0x87, 0xce, 0x3b, 0xa2, 0xa7, 0x67, 0x2a, 0x0d, 0x22, 0xfc, 0x57, 0x62, 0x4a, 0x2c, 0x38,
+	0x0c, 0x4e, 0x5a, 0x23, 0x5f, 0x63, 0x07, 0xfe, 0x89, 0x94, 0x58, 0xc3, 0x4b, 0xae, 0x8c, 0xcf,
+	0x01, 0x16, 0xa9, 0x5c, 0x5a, 0x64, 0x10, 0x4e, 0xa9, 0x2c, 0x9d, 0xa7, 0x8a, 0xd5, 0xed, 0x9a,
+	0xe4, 0x31, 0xb4, 0x86, 0x59, 0x7d, 0x19, 0x83, 0xf0, 0x5e, 0x2b, 0x43, 0xca, 0xd4, 0xc1, 0x45,
+	0x1b, 0x27, 0x10, 0x3a, 0x9b, 0xa3, 0x1f, 0xc1, 0x76, 0xe1, 0x8a, 0xbb, 0x55, 0x6b, 0xdb, 0x8b,
+	0x97, 0x95, 0xd6, 0xff, 0x0a, 0x20, 0xbc, 0x2e, 0x88, 0x0c, 0x15, 0x78, 0x0b, 0x9b, 0x63, 0x61,
+	0xfd, 0x7c, 0xc8, 0x92, 0xa5, 0xdd, 0x2c, 0x3f, 0x34, 0xea, 0xae, 0x39, 0xc9, 0xa5, 0x8d, 0x0f,
+	0xde, 0x3e, 0x3e, 0xdf, 0x1b, 0x0c, 0xbb, 0xfc, 0xa5, 0xcf, 0xbd, 0x85, 0xcf, 0xdc, 0x16, 0xe6,
+	0x7c, 0x26, 0x52, 0x9a, 0xe3, 0x0d, 0x34, 0xc7, 0xc2, 0x5e, 0x58, 0xfa, 0x03, 0x1b, 0x3d, 0xbb,
+	0x1d, 0x85, 0x8e, 0x3d, 0xb1, 0x34, 0x08, 0x7a, 0x78, 0x05, 0x1b, 0x6e, 0xda, 0x0c, 0xf7, 0x56,
+	0x42, 0xf5, 0x8e, 0xa2, 0xdd, 0xdf, 0xb2, 0x03, 0xed, 0x78, 0xd0, 0x56, 0xd4, 0xf4, 0x43, 0x66,
+	0x83, 0xa0, 0x37, 0x69, 0xfa, 0xff, 0x3c, 0xfd, 0x0e, 0x00, 0x00, 0xff, 0xff, 0x86, 0x31, 0x6d,
+	0x7c, 0x0d, 0x02, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -139,6 +240,7 @@ type GreeterClient interface {
 	// Sends a greeting
 	SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloReply, error)
 	SayBye(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloReply, error)
+	SayHi(ctx context.Context, in *HiRequest, opts ...grpc.CallOption) (*HiReply, error)
 }
 
 type greeterClient struct {
@@ -167,11 +269,21 @@ func (c *greeterClient) SayBye(ctx context.Context, in *HelloRequest, opts ...gr
 	return out, nil
 }
 
+func (c *greeterClient) SayHi(ctx context.Context, in *HiRequest, opts ...grpc.CallOption) (*HiReply, error) {
+	out := new(HiReply)
+	err := c.cc.Invoke(ctx, "/helloworld.Greeter/SayHi", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GreeterServer is the server API for Greeter service.
 type GreeterServer interface {
 	// Sends a greeting
 	SayHello(context.Context, *HelloRequest) (*HelloReply, error)
 	SayBye(context.Context, *HelloRequest) (*HelloReply, error)
+	SayHi(context.Context, *HiRequest) (*HiReply, error)
 }
 
 func RegisterGreeterServer(s *grpc.Server, srv GreeterServer) {
@@ -214,6 +326,24 @@ func _Greeter_SayBye_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Greeter_SayHi_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HiRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GreeterServer).SayHi(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/helloworld.Greeter/SayHi",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GreeterServer).SayHi(ctx, req.(*HiRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Greeter_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "helloworld.Greeter",
 	HandlerType: (*GreeterServer)(nil),
@@ -226,36 +356,11 @@ var _Greeter_serviceDesc = grpc.ServiceDesc{
 			MethodName: "SayBye",
 			Handler:    _Greeter_SayBye_Handler,
 		},
+		{
+			MethodName: "SayHi",
+			Handler:    _Greeter_SayHi_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "helloworld.proto",
-}
-
-func init() { proto.RegisterFile("helloworld.proto", fileDescriptor_helloworld_9c89e9913ffbdc79) }
-
-var fileDescriptor_helloworld_9c89e9913ffbdc79 = []byte{
-	// 236 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x12, 0xc8, 0x48, 0xcd, 0xc9,
-	0xc9, 0x2f, 0xcf, 0x2f, 0xca, 0x49, 0xd1, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x42, 0x88,
-	0x48, 0xc9, 0xa4, 0xe7, 0xe7, 0xa7, 0xe7, 0xa4, 0xea, 0x27, 0x16, 0x64, 0xea, 0x27, 0xe6, 0xe5,
-	0xe5, 0x97, 0x24, 0x96, 0x64, 0xe6, 0xe7, 0x15, 0x43, 0x54, 0x2a, 0x99, 0x70, 0xf1, 0x78, 0x80,
-	0xd4, 0x06, 0xa5, 0x16, 0x96, 0xa6, 0x16, 0x97, 0x08, 0x09, 0x71, 0xb1, 0xe4, 0x25, 0xe6, 0xa6,
-	0x4a, 0x30, 0x2a, 0x30, 0x6a, 0x70, 0x06, 0x81, 0xd9, 0x42, 0x02, 0x5c, 0xcc, 0x89, 0xe9, 0xa9,
-	0x12, 0x4c, 0x60, 0x21, 0x10, 0x53, 0xc9, 0x82, 0x8b, 0x0b, 0xaa, 0xab, 0x20, 0xa7, 0x52, 0x48,
-	0x82, 0x8b, 0x3d, 0x37, 0xb5, 0xb8, 0x18, 0xa4, 0x06, 0xa2, 0x0d, 0xc6, 0xc5, 0xd4, 0x69, 0xb4,
-	0x9d, 0x91, 0x8b, 0xdd, 0xbd, 0x28, 0x35, 0xb5, 0x24, 0xb5, 0x48, 0x28, 0x86, 0x8b, 0x23, 0x38,
-	0xb1, 0x12, 0x6c, 0x90, 0x90, 0x84, 0x1e, 0x92, 0x27, 0x90, 0x5d, 0x24, 0x25, 0x86, 0x45, 0xa6,
-	0x20, 0xa7, 0x52, 0x49, 0xae, 0xe9, 0xf2, 0x93, 0xc9, 0x4c, 0x12, 0x42, 0x62, 0xfa, 0x65, 0x46,
-	0xfa, 0x60, 0x25, 0xfa, 0xd5, 0x20, 0xe7, 0xd6, 0xea, 0x57, 0x27, 0xa6, 0xa7, 0xd6, 0x0a, 0xf9,
-	0x71, 0xb1, 0x05, 0x27, 0x56, 0x3a, 0x55, 0xa6, 0x92, 0x61, 0xb6, 0x10, 0xd8, 0x6c, 0x1e, 0x29,
-	0x76, 0x90, 0xd9, 0x49, 0x95, 0xa9, 0x56, 0x8c, 0x5a, 0x49, 0x6c, 0xe0, 0x00, 0x33, 0x06, 0x04,
-	0x00, 0x00, 0xff, 0xff, 0x32, 0x0d, 0xac, 0xd6, 0x6e, 0x01, 0x00, 0x00,
-}
-
-const PROTO_JSON ="[{\"Package\":\"helloworld\",\"Service\":\"Greeter\",\"Method\":{\"name\":\"SayHello\",\"input_type\":\".helloworld.HelloRequest\",\"output_type\":\".helloworld.HelloReply\",\"options\":{}},\"InputTypeDescriptor\":{\"name\":\"HelloRequest\",\"field\":[{\"name\":\"name\",\"number\":1,\"label\":1,\"type\":9,\"json_name\":\"name\"},{\"name\":\"age\",\"number\":2,\"label\":1,\"type\":9,\"json_name\":\"age\"}]},\"Pattern\":{\"Verb\":\"GET\",\"Path\":\"/v2/hello/{name}/{age}\",\"Body\":\"\"},\"Options\":{}},{\"Package\":\"helloworld\",\"Service\":\"Greeter\",\"Method\":{\"name\":\"SayBye\",\"input_type\":\".helloworld.HelloRequest\",\"output_type\":\".helloworld.HelloReply\",\"options\":{}},\"InputTypeDescriptor\":{\"name\":\"HelloRequest\",\"field\":[{\"name\":\"name\",\"number\":1,\"label\":1,\"type\":9,\"json_name\":\"name\"},{\"name\":\"age\",\"number\":2,\"label\":1,\"type\":9,\"json_name\":\"age\"}]},\"Pattern\":{\"Verb\":\"PUT\",\"Path\":\"/v2/bye\",\"Body\":\"*\"},\"Options\":{}}]"
-
-func init() {
-	if _, err := (&http.Client{}).Post("http://api-gateway:8080/rules", "", strings.NewReader(PROTO_JSON)); err != nil {
-		panic(err)
-	}
 }

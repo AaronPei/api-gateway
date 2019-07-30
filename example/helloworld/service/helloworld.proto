@@ -18,7 +18,14 @@ service Greeter {
           put: "/v2/bye"
           body: "*"
       };
-    }
+  }
+
+  rpc SayHi (HiRequest) returns (HiReply) {
+    option (google.api.http) = {
+        put: "/v2/hi"
+        body: "*"
+    };
+  }
 }
 
 // The request message containing the user's name.
@@ -31,4 +38,12 @@ message HelloRequest {
 message HelloReply {
   string message = 1;
   string  age = 2;
+}
+
+message HiRequest{
+  string content =1;
+}
+
+message HiReply{
+  string reply_content =1;
 }
